@@ -5,10 +5,19 @@ if (isset($_POST['Send'])){
         $error = "login error";
     }
     else {
-        if ($_POST['login'])
+        if ($_POST['login']=== "admin" /*&& pass*/){
+            header("Location: admin.php?login={$_POST['login']}");
+        }
+        if ($_POST['login']=== "user" /*&& pass*/){
+            header("Location: user.php?login={$_POST['login']}");
+        }
     }
 }
-
+if (isset($_POST['Clear'])){
+    unset($_POST);
+    $error = "";
+    header("Location: {$_SERVER['PHP_SELF']}");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +33,7 @@ if (isset($_POST['Send'])){
         <input type="text" name="login" id="login">
         <input type="password" name="pass" id="pass"><br>
         <input type="submit" name="Send" value="Send">
+        <input type="submit" name="Clear" value="Clear">
     </form>
 </body>
 
