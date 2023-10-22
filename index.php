@@ -1,14 +1,15 @@
 <?php
+include_once 'db.php';
 $error = "";
 if (isset($_POST['Send'])){
     if (!preg_match('/^\w+$/', $_POST['login'])) {
         $error = "login error";
     }
     else {
-        if ($_POST['login']=== "admin" /*&& pass*/){
+        if ($_POST['login']=== $accounts[0]['login'] /*&& pass*/){
             header("Location: admin.php?login={$_POST['login']}");
         }
-        if ($_POST['login']=== "user" /*&& pass*/){
+        if ($_POST['login']=== $accounts[1]['login'] /*&& pass*/){
             header("Location: user.php?login={$_POST['login']}");
         }
     }
